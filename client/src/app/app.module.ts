@@ -11,12 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { TextInputComponent } from './Components/text-input/text-input.component';
 import { UserService } from 'src/user.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DuelComponent,
     InspectComponent,
+    ProfileComponent,
     NavbarComponent,
     LinkButtonComponent,
     HomeComponent,

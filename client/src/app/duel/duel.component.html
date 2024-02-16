@@ -18,4 +18,15 @@
   <br />
   <br />
   <button class="submit-button" (click)="onSubmit()">Duel</button>
+  <br>
+  <div *ngIf="!hide">
+  <div style="float: left; margin:10px">
+  <div class="winner" *ngIf="winnerLeft">Winner!</div>
+  <app-profile [userTemp]="items[0]"></app-profile>
+  </div>
+  <div style = "float: right;margin:10px">
+  <div class="winner" *ngIf="!winnerLeft">Winner!</div>
+  <app-profile [userTemp]="items[1]"></app-profile>
+  </div>
+</div>
 </div>

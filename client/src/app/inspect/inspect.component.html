@@ -10,4 +10,8 @@
   <br />
   <br />
   <button class="submit-button" (click)="onSubmit()">Inspect</button>
+
+  <div id="profiler" *ngIf="!hide" style="width: 60%;">
+    <app-profile [userTemp]="tempUser" ></app-profile>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/user.service';
 
 @Component({
@@ -8,8 +8,9 @@ import { UserService } from 'src/user.service';
 })
 export class InspectComponent implements OnInit {
 
-  username: string = ""
-
+  username: string = "";
+  tempUser: any;
+  hide: boolean = true;
 
   constructor(private userService: UserService) { }
 
@@ -20,10 +21,15 @@ export class InspectComponent implements OnInit {
     this.username = valueEmitted;
   }
 
-  onSubmit() {
-    this.userService.inspectUser(this.username);
+  async onSubmit() {
+    try{
+    this.tempUser = await this.userService.inspectUser(this.username);
+    this.hide = false;
+    }
+    catch(e){
+      console.log("The user " + this.username + " was not found.");
+      this.hide = true;
+    }
   }
-
-
 
 }

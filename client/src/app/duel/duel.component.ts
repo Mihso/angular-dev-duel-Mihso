@@ -9,6 +9,9 @@ import { UserService } from 'src/user.service';
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
+  winnerLeft: boolean = true;
+  items: any;
+  hide: boolean = true;
 
   constructor(private userService: UserService) { }
 
@@ -23,7 +26,34 @@ export class DuelComponent implements OnInit {
     this.usernameTwo = valueEmitted;
   }
 
-  onSubmit() {
-    this.userService.duelUsers(this.usernameOne, this.usernameTwo);
+  scoring(comp: any){
+    let score = 0
+    score += comp["titles"].length;
+    score += comp["followers"];
+    score += comp["following"];
+    score += comp["total-stars"];
+    score += comp["highest-starred"];
+    score += comp["public-repos"];
+    score += comp["perfect-repos"];
+
+    return score
+  }
+
+  async onSubmit() {
+    try{
+    this.items = await this.userService.duelUsers(this.usernameOne, this.usernameTwo);
+    this.hide = false;
+    if(this.scoring(this.items[0]) >= this.scoring(this.items[1])){
+    this.winnerLeft = true;
+    }
+    else{
+    this.winnerLeft = false;
+    }
+  }
+    catch(e){
+      console.log("One of the users was not found.");
+      this.hide = true;
+    }
+
   }
 }
