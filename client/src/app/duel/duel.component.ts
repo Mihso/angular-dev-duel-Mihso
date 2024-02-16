@@ -9,6 +9,7 @@ import { UserService } from 'src/user.service';
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
+  error: String = "";
   winnerLeft: boolean = true;
   items: any;
   hide: boolean = true;
@@ -41,6 +42,7 @@ export class DuelComponent implements OnInit {
 
   async onSubmit() {
     try{
+    this.error = "";
     this.items = await this.userService.duelUsers(this.usernameOne, this.usernameTwo);
     this.hide = false;
     if(this.scoring(this.items[0]) >= this.scoring(this.items[1])){
@@ -50,8 +52,8 @@ export class DuelComponent implements OnInit {
     this.winnerLeft = false;
     }
   }
-    catch(e){
-      console.log("One of the users was not found.");
+    catch(err){
+      this.error = "Error: One of the submitted usernames might be off.";
       this.hide = true;
     }
 

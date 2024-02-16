@@ -10,6 +10,7 @@ export class InspectComponent implements OnInit {
 
   username: string = "";
   tempUser: any;
+  error: String = "";
   hide: boolean = true;
 
   constructor(private userService: UserService) { }
@@ -23,11 +24,13 @@ export class InspectComponent implements OnInit {
 
   async onSubmit() {
     try{
+      this.error = "";
     this.tempUser = await this.userService.inspectUser(this.username);
     this.hide = false;
     }
     catch(e){
       console.log("The user " + this.username + " was not found.");
+      this.error = "Error: User with username " + this.username +" was not found.";
       this.hide = true;
     }
   }
