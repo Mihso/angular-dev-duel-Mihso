@@ -35,7 +35,6 @@ export class InspectComponent implements OnInit {
         throw(e);
       }
       this.error = "Error: " + e.error.message;
-      this.hide = true;
     }
   }
 
