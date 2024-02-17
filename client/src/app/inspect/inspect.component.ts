@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/user.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class InspectComponent implements OnInit {
   tempUser: any;
   error: String = "";
   hide: boolean = true;
+  white: string = "white";
 
   constructor(private userService: UserService) { }
 
@@ -28,9 +29,12 @@ export class InspectComponent implements OnInit {
     this.tempUser = await this.userService.inspectUser(this.username);
     this.hide = false;
     }
-    catch(e){
-      console.log("The user " + this.username + " was not found.");
-      this.error = "Error: User with username " + this.username +" was not found.";
+    catch(e: any){
+      if(this.username == ""){
+        this.error = "Need to enter a username.";
+        throw(e);
+      }
+      this.error = "Error: " + e.error.message;
       this.hide = true;
     }
   }

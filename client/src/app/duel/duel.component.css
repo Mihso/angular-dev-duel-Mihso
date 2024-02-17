@@ -14,3 +14,14 @@ border-radius: 15px;
   font-size: 40px;
   color:rgb(0, 188, 6);
 }
+.score{
+  margin: 40px;
+  font-size: 40px;
+  text-align: center;
+  align-content: center;
+}
+
+li{
+  margin-bottom: 5px;
+  text-align: center;
+}

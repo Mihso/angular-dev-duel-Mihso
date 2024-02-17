@@ -9,10 +9,15 @@ import { UserService } from 'src/user.service';
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
-  error: String = "";
+  score0: number = 0;
+  score1:number =0;
+  error: any;
+  tie: boolean = false;
   winnerLeft: boolean = true;
   items: any;
   hide: boolean = true;
+  lefter: string = "white";
+  righter: string = "white";
 
   constructor(private userService: UserService) { }
 
@@ -29,7 +34,7 @@ export class DuelComponent implements OnInit {
 
   scoring(comp: any){
     let score = 0
-    score += comp["titles"].length;
+    score += comp["titles"].length * 1000;
     score += comp["followers"];
     score += comp["following"];
     score += comp["total-stars"];
@@ -42,19 +47,32 @@ export class DuelComponent implements OnInit {
 
   async onSubmit() {
     try{
+    this.lefter = "white";
+    this.righter = "white";
+    this.hide = true;
     this.error = "";
+    this.tie = false;
     this.items = await this.userService.duelUsers(this.usernameOne, this.usernameTwo);
     this.hide = false;
-    if(this.scoring(this.items[0]) >= this.scoring(this.items[1])){
+    this.score0 = this.scoring(this.items[0]);
+    this.score1 = this.scoring(this.items[1]);
+
+    if(this.score0 > this.score1){
     this.winnerLeft = true;
+    this.lefter = "green";
+    }
+    else if(this.score0 == this.score1){
+      this.tie = true;
     }
     else{
     this.winnerLeft = false;
+    this.righter = "green";
     }
   }
-    catch(err){
-      this.error = "Error: One of the submitted usernames might be off.";
+    catch(e: any){
+      this.error = "Error: " + e.error.message;
       this.hide = true;
+      throw(e);
     }
 
   }

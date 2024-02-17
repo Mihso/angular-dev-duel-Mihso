@@ -10,10 +10,10 @@
   <br />
   <br />
   <button class="submit-button" (click)="onSubmit()">Inspect</button>
-  <div style="margin:10px">
+  <div style="font-size: 20px; margin:10px; color:red;">
     {{error}}
   </div>
   <div id="profiler" *ngIf="!hide" style="width: 60%;">
-    <app-profile [userTemp]="tempUser" ></app-profile>
+    <app-profile [userTemp]="tempUser" [back]="white" ></app-profile>
   </div>
 </div>

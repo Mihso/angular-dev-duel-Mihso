@@ -8,17 +8,7 @@ import { UserService } from 'src/user.service';
 })
 export class ProfileComponent implements OnInit {
       @Input() userTemp: any;
-  username: string = "";
-  name: string = "";
-  location: string ="";
-  titles: string="";
-  fav_language: string = "";
-  total_stars: number = 0;
-  highest_stars: number= 0;
-  public_repos: number = 0;
-  perfect_repos: number= 0;
-  followers: number = 0;
-  following: number = 0;
+      @Input() back: string = "";
 
   @Output() updateUser = new EventEmitter<any>()
   handleUser(){
@@ -27,7 +17,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log(this.userTemp);
+
   }
 
   updateProfile(valueEmitted: any) {
