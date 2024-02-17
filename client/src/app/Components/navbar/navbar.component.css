@@ -4,5 +4,11 @@ font-style: normal;
 font-weight: 700;
 font-size: 48px;
 text-align: center;
-color: #581DFF;
+color: #9a75ff;
+border-style: inset;
+border-radius: 20px;
+border-width: 10px;
+border-color: black;
+padding: 10px;
+background-color: rgb(75, 75, 75);
 }
