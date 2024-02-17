@@ -12,7 +12,7 @@ export class InspectComponent implements OnInit {
   tempUser: any;
   error: String = "";
   hide: boolean = true;
-  white: string = "white";
+  color: string = "burlywood";
 
   constructor(private userService: UserService) { }
 

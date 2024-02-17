@@ -16,8 +16,8 @@ export class DuelComponent implements OnInit {
   winnerLeft: boolean = true;
   items: any;
   hide: boolean = true;
-  lefter: string = "white";
-  righter: string = "white";
+  lefter: string = "burlywood";
+  righter: string = "burlywood";
 
   constructor(private userService: UserService) { }
 
@@ -47,8 +47,8 @@ export class DuelComponent implements OnInit {
 
   async onSubmit() {
     try{
-    this.lefter = "white";
-    this.righter = "white";
+    this.lefter = "burlywood";
+    this.righter = "burlywood";
     this.hide = true;
     this.error = "";
     this.tie = false;
