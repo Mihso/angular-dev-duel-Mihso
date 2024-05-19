@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "https://mihso.github.io/angular-dev-duel-mihso/",
             "outputPath": "dist/dev-duel",
             "index": "src/index.html",
             "main": "src/main.ts",
